@@ -1,0 +1,2 @@
+### Host-name
+To find out the exact host-name used for a machine, install the package and in the dist folder is a stand-alone `query-hostname.js` script that can be directly executed by node to display the current machine host-name.

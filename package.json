@@ -1,0 +1,19 @@
+{
+  "name": "configplugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fuse.js",
+  "scripts": {
+    "query": "node query"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fuse-box": "^2.2.2",
+    "merge-config": "^2.0.0",
+    "os-hostname": "^1.1.3"
+  },
+  "devDependencies": {
+    "typescript": "^2.4.2"
+  }
+}

@@ -1,0 +1,3 @@
+db:
+  server: localhost
+  port: 27472
