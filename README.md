@@ -65,7 +65,18 @@ In your `fuse.js` file, import and use the plugin like this:
 const {ConfigPlugin} = require('bundle-config/fuse-box');
 
 ...
-
+//either
+const fuse = FuseBox.init({
+	...,
+	plugins: [
+		...,
+		ConfigPlugin({
+			specs: [production?'prod':'dev']
+		})
+	]
+});
+...
+//or
 fuse.bundle('dest/name')
 	.plugin(ConfigPlugin({
 		specs: [production?'prod':'dev']

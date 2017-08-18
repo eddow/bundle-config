@@ -18,7 +18,7 @@ function subSets(set) {
 	return rv;
 }
 
-export default function extract(path: string, specs: string[], env: string[] = null, argv: string[] = null) {
+export default function extract(path: string = 'config', specs: string[] = [], env: string[] = null, argv: string[] = null) {
 	var config = new Config(),
 		roots = ['default', hostname(), 'local'],
 		subSpecs = subSets(specs).map(x=>x.join('.')),

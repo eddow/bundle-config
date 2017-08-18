@@ -20,8 +20,6 @@ export class ConfigPluginClass implements Plugin {
 	namedItem(type: string): MimeType;
 	[index: number]: MimeType;*/
 	constructor(public opts?: ConfigPluginOptions) {
-		if(!opts.path) opts.path = 'config';
-		if(!opts.specs) opts.specs = [];
 	}
 	bundleStart(context: WorkFlowContext) {
 		var bundleSpecs = context.bundle.name.split('/'),
