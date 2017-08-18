@@ -14,8 +14,8 @@
     "typescript": "^2.4.2"
   },
   "keywords": [
-		"fuse-box",
-		"bundle",
+    "fuse-box",
+    "bundle",
     "config",
     "plugin"
   ],

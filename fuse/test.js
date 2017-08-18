@@ -1,6 +1,6 @@
 
 const {FuseBox, TypeScriptHelpers, QuantumPlugin} = require("fuse-box");
-const {ConfigPlugin} = require('../dist/fuse');
+const {ConfigPlugin} = require('bundle-config/fuse-box');
 
 const fuse = FuseBox.init({
     homeDir: "..",
