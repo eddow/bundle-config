@@ -30,9 +30,10 @@ export class ConfigPluginClass implements Plugin {
 				this.opts.path||'config',
 				this.opts.specs ? bundleSpecs.concat(this.opts.specs) : bundleSpecs,
 				this.opts.env, this.opts.argv
-			);
-		context.output.write('./config.js', 'module.exports = '+JSON.stringify(config)+';', true);
-		context.addAlias(this.opts.importName||'config', './config.js');
+			),
+			tempFileName = './config.'+Math.floor(Math.random()*Math.pow(36,11)).toString(36)+'.js';
+		context.output.write(tempFileName, 'module.exports = '+JSON.stringify(config)+';', true);
+		context.addAlias(this.opts.importName||'config', tempFileName);
 	}
 };
 

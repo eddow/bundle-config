@@ -4,7 +4,7 @@
   "description": "",
   "main": "fuse.js",
   "scripts": {
-    "query": "node query"
+    "query": "node dist/query-hostname"
   },
   "dependencies": {
     "merge-config": "^2.0.0"
@@ -21,11 +21,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eddow/config-plugin.git"
+    "url": "git+https://github.com/eddow/bundle-config.git"
   },
   "author": "fmdm",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eddow/config-plugin/issues"
+    "url": "https://github.com/eddow/bundle-config/issues"
   }
 }
