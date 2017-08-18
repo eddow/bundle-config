@@ -4,7 +4,6 @@
 import extract from './config'
 
 export interface ConfigPluginOptions {
-	importName?: string
 	path?: string
 	specs?: string[]
 	env?: string[]
@@ -33,7 +32,7 @@ export class ConfigPluginClass implements Plugin {
 			),
 			tempFileName = './config.'+Math.floor(Math.random()*Math.pow(36,11)).toString(36)+'.js';
 		context.output.write(tempFileName, 'module.exports = '+JSON.stringify(config)+';', true);
-		context.addAlias(this.opts.importName||'config', tempFileName);
+		context.addAlias(this.opts.name||'config', tempFileName);
 	}
 };
 

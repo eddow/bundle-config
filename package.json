@@ -2,7 +2,7 @@
   "name": "bundle-config",
   "version": "1.0.0",
   "description": "",
-  "main": "fuse.js",
+  "main": "dist/config.js",
   "scripts": {
     "query": "node dist/query-hostname"
   },
