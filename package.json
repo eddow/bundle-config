@@ -1,7 +1,7 @@
 {
   "name": "bundle-config",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Configuration management for bundlers",
   "main": "dist/config.js",
   "scripts": {
     "query": "node dist/query-hostname"

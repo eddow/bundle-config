@@ -5,7 +5,7 @@ Inteded to be used by bundlers to bundle a configuration object built upon many 
 The gathering will create one configuration object from the files of a folder and the configuration given as parameter.
 
 The configuration engine will look for many files each overwriting the previous one.
-Each file will be searched with extension `.yaml` or `.json`. Note that it will read [hson](http://hjson.org/) that is basically a more forgiving json.
+Each file will be searched with extension `.yaml` or `.json`. Note that it will read [hjson](http://hjson.org/) that is basically a more forgiving json.
 
 ## Bundler-oriented configuration
 This library is made so that a configuration is read in order to be available to bundle or be used by the running program.
@@ -48,8 +48,8 @@ npm install bundle-config
 ```typescript
 const extract = require('bundle-config');
 ```
-```typescript
-function extract(path: string, specs: string[], env: string[] = null, argv: string[] = null)
+```ts
+function extract(path: string = 'config', specs: string[] = [], env: string[] = null, argv: string[] = null)
 ```
 This function returns the configuration object extracted from a folder and the environment.
 * `path` is the path of the folder containing the config files
@@ -83,7 +83,7 @@ fuse.bundle('dest/name')
 	}))
 ```
 
-The plugin will add the parts of the bundle name (separated by `/`) in front of the specifications. This case would look also for files like `default.dest.prod.yaml` or `default.dest.name.prod.yaml`. This is useful when there are bundles like `client/app`, `client/vendor`, `server/app`, ...
+The plugin will add the parts of the bundle name (separated by `/`) and target (`browser`/`server`/...) in front of the specifications. This case would look also for files like `default.dest.prod.yaml` or `default.dest.name.prod.yaml`. This is useful when there are bundles like `client/app`, `client/vendor`, `server/app`, ...
 
 In the bundled files, we can use
 ```typescript
