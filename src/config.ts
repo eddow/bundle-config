@@ -1,13 +1,7 @@
-import * as oh from 'os-hostname'
-import {existsSync} from 'fs'
+import {hostname} from 'os'
+import {existsSync, readFileSync} from 'fs'
 import {join} from 'path'
 import * as Config from 'merge-config'
-
-var ohp = new Promise((resolve, reject)=> {
-	oh(function(err, hn) {
-		return err ? reject(err) : resolve(hn);
-	});
-});
 
 function subSetsRow(set, size, index): any[] {
 	if(0> size) return [[]];
@@ -24,15 +18,21 @@ function subSets(set) {
 	return rv;
 }
 
-export default async function extract(path, specs, env = null, argv = null) {
-	var config = new Config({delimiter: '.'}),
-		roots = ['default', await ohp, 'local'],
+export default function extract(path: string, specs: string[], env: string[] = null, argv: string[] = null) {
+	var config = new Config(),
+		roots = ['default', hostname(), 'local'],
 		subSpecs = subSets(specs).map(x=>x.join('.')),
 		extensions = ['yaml', 'json'];
-	for(let root of roots) for(let subSpec of subSpecs) for(let extension of extensions) {
-		let fName = join(path, [root, subSpec, extension].filter(x=>x).join('.'));
-		if(existsSync(fName)) config.file(fName);
-	}
+		for(let root of roots) for(let subSpec of subSpecs) for(let extension of extensions) {
+			let fName = join(path, [root, subSpec, extension].filter(x=>x).join('.'));
+			if(existsSync(fName)) config.file(fName);
+		}
+		for(let root of roots) for(let subSpec of subSpecs) {
+			let fctName = [root, subSpec].filter(x=>x).join('.'),
+				fName = join(path, fctName+'.js');
+			if(existsSync(fName))
+				eval(`[function _${fctName.replace(/\./g,'_')}(config){`+readFileSync(fName, 'utf8')+'}]')[0](config);
+		}
 	if(env) config.env(env);
 	if(argv) config.argv(argv);
 	return config.get();

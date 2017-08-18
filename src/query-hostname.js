@@ -1,4 +1,2 @@
-var oh = require('os-hostname');
-oh(function(err, hn) {
-	console.log(hn);
-});
+var os = require('os');
+console.log('os:'+os.hostname());

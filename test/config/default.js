@@ -1,0 +1,1 @@
+config.set('db:url', 'mongodb://'+config.get('db:server')+':'+config.get('db:port'));

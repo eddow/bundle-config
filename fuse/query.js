@@ -2,8 +2,8 @@
 const {FuseBox, TypeScriptHelpers, QuantumPlugin} = require("fuse-box");
 
 const fuse = FuseBox.init({
-    homeDir: ".",
-    output: "test/$name.js",
+    homeDir: "../src",
+    output: "../dist/$name.js",
 		cache: false,
 		sourceMaps: false,
 		plugins: [
@@ -12,7 +12,7 @@ const fuse = FuseBox.init({
 });
 
 fuse
-	.bundle("config")
-	.instructions('> [test/config.ts]');
+	.bundle("query-hostname")
+	.instructions('> query-hostname.js');
 
 fuse.run();
