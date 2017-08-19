@@ -14,9 +14,9 @@ export interface ConfigPluginOptions {
 }
 
 var virtualName: string = 'config.bundle-config.js';
-BundleData.prototype._fileBlackListed = BundleData.prototype.fileBlackListed;
+var _fileBlackListed = BundleData.prototype.fileBlackListed;
 BundleData.prototype.fileBlackListed = function(file) {
-	return virtualName === file.relativePath || this._fileBlackListed(file);
+	return virtualName === file.relativePath || _fileBlackListed.call(this, file);
 };
 export class ConfigPluginClass implements Plugin {
 	/*readonly description: string;
@@ -31,9 +31,9 @@ export class ConfigPluginClass implements Plugin {
 	}
 	
 	init(context: WorkFlowContext) {
-		context.source._startCollection = context.source.startCollection;
+		var _startCollection = context.source.startCollection;
 		context.source.startCollection = collection=> {
-			context.source._startCollection(collection);
+			_startCollection.call(context.source, collection);
 			if(collection.name === context.defaultPackageName) {
 				context.source.addFile(this.configFile(context));
 			}
