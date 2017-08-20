@@ -13,10 +13,11 @@ export interface ConfigPluginOptions {
 	name?: string
 }
 
-var virtualName: string = 'config.bundle-config.js';
+var virtualName: string = 'config.bundle-config.js',
+	configTest = new RegExp(virtualName.replace(/\./g, '\\.')+'$');
 var _fileBlackListed = BundleData.prototype.fileBlackListed;
 BundleData.prototype.fileBlackListed = function(file) {
-	return virtualName === file.relativePath || _fileBlackListed.call(this, file);
+	return configTest.test(file.relativePath) || _fileBlackListed.call(this, file);
 };
 export class ConfigPluginClass implements Plugin {
 	/*readonly description: string;
