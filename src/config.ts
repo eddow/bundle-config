@@ -22,7 +22,7 @@ export default function extract(path: string = 'config', specs: string[] = [], e
 	var config = new Config(),
 		roots = ['default', hostname(), 'local'],
 		subSpecs = subSets(specs).map(x=>x.join('.')),
-		extensions = ['yaml', 'json'];
+		extensions = ['yaml', 'yml', 'json'];
 		for(let root of roots) for(let subSpec of subSpecs) for(let extension of extensions) {
 			let fName = join(path, [root, subSpec, extension].filter(x=>x).join('.'));
 			if(existsSync(fName)) config.file(fName);
