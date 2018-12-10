@@ -1,3 +1,4 @@
+[![npm](https://img.shields.io/npm/v/bundle-config.svg)](https://www.npmjs.com/package/bundle-config)
 # Bundle config
 Inteded to be used by bundlers to bundle a configuration object built upon many selected files - easing developing, testing, etc.
 
@@ -85,7 +86,9 @@ fuse.bundle('dest/name')
 	}))
 ```
 
-The plugin will add the parts of the bundle name (separated in the bundle name by `/` that will become file-name part separated with `.`) and target (`browser`/`server`/...) in front of the specifications. This case would look also for files like `default.dest.prod.yaml` or `default.dest.name.prod.yaml`. This is useful when there are bundles like `client/app`, `client/vendor`, `server/app`, etc. that will read files like `default.server.yml`, `local.vendor.json`, etc.
+The plugin will add the parts of the bundle name (separated in the bundle name by `/` that will become file-name part separated with `.`) and target (`browser`/`server`/...) in front of the specifications.
+
+In the case of a bundle named `myDest/myName`, this would look also for files like `default.myDest.prod.yaml` or `default.myDest.myName.prod.yaml`. This is useful when there are bundles like `client/app`, `client/vendor`, `server/app`, etc. that will read files like `default.server.yml`, `local.vendor.json`, etc.
 
 In the bundled files, we can use
 ```typescript
@@ -106,14 +109,3 @@ The next ones are given to the extractor (all as-is except for `specs` that has 
 
 ## Host-name
 To find out the exact host-name used for a machine, install the package and in the dist folder is a stand-alone `query-hostname.js` script that can be directly executed by node to display the current machine host-name.
-
-# Donations
-I contribute for free with drive, passion and time.
-If you like what I do, you can promote me to do it more.
-
-These are the only *like* buttons that have a real effect.
-
-- [paypal.me/eeddow](https://www.paypal.me/eeddow)
-- ETH: 0xb79b61130bc5726ddab6c1d59c3e0479afe69540
-- BTC: 39ybn3KGNUvZrhifaLJcf4cJdzkGMdfAMT
-- BCH: 3K81iYWwLZuWXY1qHcBL559FYraUqKMkEp

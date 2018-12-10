@@ -25,6 +25,6 @@ const fuse = FuseBox.init({
 
 fuse
 	.bundle("config")
-	.instructions('> [config.ts]');
+	.instructions('> [index.ts]');
 
 fuse.run();

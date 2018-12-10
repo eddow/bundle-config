@@ -4,14 +4,7 @@ import {File} from 'fuse-box/dist/commonjs/core/File'
 import {ModuleCollection} from 'fuse-box/dist/commonjs/core/ModuleCollection'
 import {BundleData} from 'fuse-box/dist/commonjs/arithmetic/Arithmetic.js'
 import extract from './config'
-
-export interface ConfigPluginOptions {
-	path?: string
-	specs?: string[]
-	env?: string[]
-	argv?: string[]
-	name?: string
-}
+import ConfigPluginOption from './options'
 
 var virtualName: string = 'config.bundle-config.js',
 	configTest = new RegExp(virtualName.replace(/\./g, '\\.')+'$');
@@ -20,14 +13,6 @@ BundleData.prototype.fileBlackListed = function(file) {
 	return configTest.test(file.relativePath) || _fileBlackListed.call(this, file);
 };
 export class ConfigPluginClass implements Plugin {
-	/*readonly description: string;
-	readonly filename: string;
-	readonly length: number;
-	readonly name: string;
-	readonly version: string;
-	item(index: number): MimeType;
-	namedItem(type: string): MimeType;
-	[index: number]: MimeType;*/
 	constructor(public opts: ConfigPluginOptions = {}) {
 	}
 	
@@ -56,6 +41,4 @@ export class ConfigPluginClass implements Plugin {
 	}
 };
 
-export const ConfigPlugin = (opts?: ConfigPluginOptions) => {
-	return new ConfigPluginClass(opts || {});
-};
+export default (opts?: ConfigPluginOptions) => new ConfigPluginClass(opts || {});

@@ -1,6 +1,7 @@
 node_modules
 dist
 test/*.js
+!test/webpack.config.js
 test/config/local.*
 package-lock.*
 .vscode/*

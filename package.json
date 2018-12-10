@@ -3,15 +3,26 @@
   "version": "1.1.5",
   "description": "Configuration management for bundlers",
   "main": "dist/config.js",
+  "ts:main": "src/config.ts",
+  "sideEffect": false,
   "scripts": {
-    "query": "node dist/query-hostname"
+    "query": "node dist/query-hostname",
+    "start": "node build/lib",
+    "test": "webpack --config webpack.test.js"
   },
   "dependencies": {
     "merge-config": "^2.0.0"
   },
   "devDependencies": {
+    "chokidar": "^2.0.4",
     "fuse-box": "^2.2.2",
-    "typescript": "^2.4.2"
+    "ts-loader": "^5.3.1",
+    "typescript": "^2.4.2",
+    "virtual-module-webpack-plugin": "^0.4.0",
+    "vmodule-webpack-plugin": "^1.0.9",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-virtual-modules": "^0.1.10"
   },
   "keywords": [
     "fuse-box",
@@ -24,7 +35,7 @@
     "url": "git+https://github.com/eddow/bundle-config.git"
   },
   "author": "fmdm",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/eddow/bundle-config/issues"
   }

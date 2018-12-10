@@ -1,7 +1,7 @@
 
 const {FuseBox, TypeScriptHelpers, QuantumPlugin} = require("fuse-box");
-//const {ConfigPlugin} = require('bundle-config/fuse-box');
-const {ConfigPlugin} = require('../fuse-box');
+//const {fuse: ConfigPlugin} = require('bundle-config');
+const {fuse: ConfigPlugin} = require('../dist/config');
 
 const fuse = FuseBox.init({
     homeDir: "..",
@@ -24,6 +24,6 @@ fuse
 		path: 'test/config',
 		specs: ['server', 'prod']
 	}))
-	.instructions('> [test/fused.ts]');
+	.instructions('> [test/bundled.ts]');
 
 fuse.run();

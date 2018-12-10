@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": false,
-	"sourceRoot": ".",
-	"outDir": "../dist/",
-	"inlineSources": true,
+	"outDir": ".",
     "noImplicitAny": false,
     "module": "commonjs",
     "moduleResolution": "node",
