@@ -62,56 +62,23 @@ This function returns the configuration object extracted from a folder and the e
 
 For `env` and `argv`, please refer to [merge-config](https://www.npmjs.com/package/merge-config) on which this library is built
 
-## fuse-box
-
-A plugin is implemented for [fuse-box](http://fuse-box.org) users.
-In your `fuse.js` file, import and use the plugin like this:
-```javascript
-const {ConfigPlugin} = require('bundle-config/fuse-box');
-
-...
-//either
-const fuse = FuseBox.init({
-	...,
-	plugins: [
-		...,
-		ConfigPlugin({
-			specs: [production?'prod':'dev']
-		})
-	]
-});
-...
-//or
-fuse.bundle('dest/name')
-	.plugin(ConfigPlugin({
-		specs: [production?'prod':'dev']
-	}))
-```
-
-The plugin will add the parts of the bundle name (separated in the bundle name by `/` that will become file-name part separated with `.`) and target (`browser`/`server`/...) in front of the specifications.
-
-In the case of a bundle named `myDest/myName`, this would look also for files like `default.myDest.prod.yaml` or `default.myDest.myName.prod.yaml`. This is useful when there are bundles like `client/app`, `client/vendor`, `server/app`, etc. that will read files like `default.server.yml`, `local.vendor.json`, etc.
-
-In the bundled files, we can use
-```typescript
-import * as config from 'config'
-import {db} from 'config'
-```
-
-### Plugin options
-
-* `name?: string`
-The name used for importing the configuration in the bundled files. Defaults to `"config"`
-
-The next ones are given to the extractor (all as-is except for `specs` that has the bundle name added)
-* `path: string`
-*	`specs?: string[]`
-*	`env?: string[]`
-*	`argv?: string[]`
-
-## webpack
+## Webpack
 
 With webpack, this plugin creates directly a value (by default in `proces.env.config`) with the built configuration.
+
+```js
+...
+var {webpack: ConfigPlugin} = require('bundle-config');
+
+module.exports = {
+	...
+	plugins: [
+		...
+		new ConfigPlugin()
+	],
+	...
+};
+```
 
 ### Plugin options
 
@@ -120,7 +87,9 @@ The variable in which the configuration is stored. Defaults to `proces.env.confi
 
 The next ones are given to the extractor (all as-is except for `specs` that has the bundle name added)
 * `path: string`
+The path where all the config files are stored. Defaults to `config`
 *	`specs?: string[]`
+The specifications to find the config files (`server`/`client`, `dev`/`prod`, ...)
 *	`env?: string[]`
 *	`argv?: string[]`
 

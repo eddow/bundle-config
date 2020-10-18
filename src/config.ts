@@ -1,7 +1,7 @@
 import {hostname} from 'os'
 import {existsSync, readFileSync} from 'fs'
 import {join} from 'path'
-import * as Config from 'merge-config'
+import Config from 'merge-config'
 
 function subSetsRow(set: string[], size: number, index: number): any[] {
 

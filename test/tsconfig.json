@@ -3,7 +3,6 @@
     "sourceMap": false,
 	"outDir": ".",
     "noImplicitAny": false,
-    "module": "commonjs",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
