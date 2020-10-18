@@ -61,7 +61,9 @@ This function returns the configuration object extracted from a folder and the e
 * `argv` is the list of command-line parameter names to include in the configuration
 
 For `env` and `argv`, please refer to [merge-config](https://www.npmjs.com/package/merge-config) on which this library is built
+
 ## fuse-box
+
 A plugin is implemented for [fuse-box](http://fuse-box.org) users.
 In your `fuse.js` file, import and use the plugin like this:
 ```javascript
@@ -102,7 +104,22 @@ import {db} from 'config'
 The name used for importing the configuration in the bundled files. Defaults to `"config"`
 
 The next ones are given to the extractor (all as-is except for `specs` that has the bundle name added)
-* `path?: string`
+* `path: string`
+*	`specs?: string[]`
+*	`env?: string[]`
+*	`argv?: string[]`
+
+## webpack
+
+With webpack, this plugin creates directly a value (by default in `proces.env.config`) with the built configuration.
+
+### Plugin options
+
+* `name?: string`
+The variable in which the configuration is stored. Defaults to `proces.env.config`
+
+The next ones are given to the extractor (all as-is except for `specs` that has the bundle name added)
+* `path: string`
 *	`specs?: string[]`
 *	`env?: string[]`
 *	`argv?: string[]`

@@ -16,7 +16,8 @@ module.exports = {
 	},
 	plugins: [
 		new ConfigPlugin({
-			path: 'test/config'
+			path: 'test/config',
+			name: 'process.env.config'
 		})
 	],
 	module: {
@@ -24,9 +25,12 @@ module.exports = {
 			test: /\.ts$/,
 			exclude: /node_modules/,
 			loader: 'ts-loader'
+		}, {
+			test: /\.json$/,
+			loader: 'json-loader'
 		}]
 	},
 	resolve: {
-		extensions: [".ts"]
+		extensions: ['.ts', '.json']
 	}
 };

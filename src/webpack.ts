@@ -1,4 +1,4 @@
-import * as VModulePlugin from "vmodule-webpack-plugin"
+import * as webpack from "webpack"
 import extract from './config'
 import ConfigPluginOption from './options'
 
@@ -10,8 +10,7 @@ export default function configPlugin(options: ConfigPluginOption = {})
 			options.env,
 			options.argv
 		), configured = {};
-	return new VModulePlugin({
-		name: options.name||'config',
-		handler: ()=> config
-	});
+	configured[options.name||'process.env.config'] = JSON.stringify(config);
+	
+	return new webpack.DefinePlugin(configured);
 }
