@@ -62,14 +62,40 @@ This function returns the configuration object extracted from a folder and the e
 
 For `env` and `argv`, please refer to [merge-config](https://www.npmjs.com/package/merge-config) on which this library is built
 
-## Webpack
+## While bundling
 
-With webpack, this plugin creates directly a value (by default in `proces.env.config`) with the built configuration.
+When bundling, the variable has to be declared if using typescript:
+```js
+declare var config: any;
+```
+
+After, the value is defined like globally.
+Take care that the value is NOT defined but replaced; If the value is used several times, it is better to begin with a local affectation then use the variable.
+```ts
+const serverConfig = config;
+...
+app.listen(serverConfig.http.port);
+```
+
+### Plugin options
+
+* `name?: string`
+The variable in which the configuration is stored. Defaults to `config`
+
+The next ones are given to the extractor (all as-is except for `specs` that has the bundle name added)
+* `path: string`
+The path where all the config files are stored. Defaults to `config`. If relative, it is given from the execution directory.
+*	`specs?: string[]`
+The specifications to find the config files (`server`/`client`, `dev`/`prod`, ...)
+*	`env?: string[]`
+*	`argv?: string[]`
+
+### Webpack
 
 ```js
 ...
 var {webpack: ConfigPlugin} = require('bundle-config');
-
+...
 module.exports = {
 	...
 	plugins: [
@@ -80,18 +106,21 @@ module.exports = {
 };
 ```
 
-### Plugin options
+### Rollup
 
-* `name?: string`
-The variable in which the configuration is stored. Defaults to `proces.env.config`
-
-The next ones are given to the extractor (all as-is except for `specs` that has the bundle name added)
-* `path: string`
-The path where all the config files are stored. Defaults to `config`
-*	`specs?: string[]`
-The specifications to find the config files (`server`/`client`, `dev`/`prod`, ...)
-*	`env?: string[]`
-*	`argv?: string[]`
+```js
+...
+const {rollup: ConfigPlugin} = require('bundle-config');
+...
+export default {
+	...
+	plugins: [
+		...
+		new ConfigPlugin()
+	],
+	...
+};
+```
 
 ## Host-name
 To find out the exact host-name used for a machine, install the package and in the dist folder is a stand-alone `query-hostname.js` script that can be directly executed by node to display the current machine host-name.

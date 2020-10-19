@@ -1,6 +1,6 @@
 import config from './config'
-//import fuse from './fuse-box'
+import rollup from './rollup'
 import webpack from './webpack'
 
-export {/*fuse, */webpack};
+export {rollup, webpack};
 export default config;

@@ -5,19 +5,17 @@ var webpack = require("webpack"),
 	testPath = __dirname;
 
 module.exports = {
-	mode: 'development',	//This is meant to be bundled afterward anyway
+	mode: 'development',
 	context: testPath,
 	entry: {
-		'webpacked': ['./bundled.ts'],
+		'webpacked': ['./index.ts'],
 	},
 	output: {
 		filename: '[name].js',
 		path: testPath
 	},
 	plugins: [
-		new ConfigPlugin({
-			path: 'test/config'
-		})
+		new ConfigPlugin({path: './test/config'})
 	],
 	module: {
 		rules: [{

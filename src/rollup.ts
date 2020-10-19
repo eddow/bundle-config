@@ -1,10 +1,9 @@
 import extract from './config'
 import ConfigPluginOption from './options'
+import replace from '@rollup/plugin-replace';
 
 export default function configPlugin(options: ConfigPluginOption = {})
 {
-	const webpack = require('webpack');
-	debugger;
 	var config = extract(
 			options.path||'config',
 			options.specs || [],
@@ -13,5 +12,5 @@ export default function configPlugin(options: ConfigPluginOption = {})
 		), configured = {};
 	configured[options.name||'config'] = JSON.stringify(config);
 	
-	return new webpack.DefinePlugin(configured);
+	return replace(configured);
 }
