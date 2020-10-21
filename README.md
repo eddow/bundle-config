@@ -1,12 +1,14 @@
 [![npm](https://img.shields.io/npm/v/bundle-config.svg)](https://www.npmjs.com/package/bundle-config)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/eddow/bundle-config)
+
 # Bundle config
-Inteded to be used by bundlers to bundle a configuration object built upon many selected files - easing developing, testing, etc.
+Intended to be used by bundlers to bundle a configuration object built upon many selected files - easing developing, testing, etc.
 
 ## Config gathering
 The gathering will create one configuration object from the files of a folder and the configuration given as parameter.
 
 The configuration engine will look for many files each overwriting the previous one.
-Each file will be searched with extension `.yaml` or `.json`. Note that it will read [hjson](http://hjson.org/) that is basically a more forgiving json.
+Each file will be searched with extension `.yaml`, `.yml`, `.json` and `.js`. Note that `.json` will read [hjson](http://hjson.org/) that is basically a more forgiving json.
 
 ## Bundler-oriented configuration
 This library is made so that a configuration is read in order to be available to bundle or be used by the running program.
@@ -65,7 +67,7 @@ For `env` and `argv`, please refer to [merge-config](https://www.npmjs.com/packa
 ## While bundling
 
 When bundling, the variable has to be declared if using typescript:
-```js
+```ts
 declare var config: any;
 ```
 
