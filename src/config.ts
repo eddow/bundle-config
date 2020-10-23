@@ -1,10 +1,10 @@
 import {hostname} from 'os'
 import {existsSync, readFileSync} from 'fs'
 import {join} from 'path'
+import archieml from 'archieml'
 import Config from 'merge-config'
 
 function subSetsRow(set: string[], size: number, index: number): any[] {
-
 	if(0> size) return [[]];
 	var rv = [];
 	for(; index < set.length-size; ++index)
@@ -24,11 +24,18 @@ export default function extract(path: string = 'config', specs: string[] = [], e
 	var config = new Config(),
 		roots = ['default', hostname(), 'local'],
 		subSpecs = subSets(specs).map(x=>x.join('.')),
-		extensions = ['yaml', 'yml', 'json'];
+		extensions = ['aml', 'yaml', 'yml', 'json'];
 	//first static pass
 	for(let root of roots) for(let subSpec of subSpecs) for(let extension of extensions) {
 		let fName = join(path, [root, subSpec, extension].filter(x=>x).join('.'));
-		if(existsSync(fName)) config.file(fName);
+		if(existsSync(fName)) switch(extension) {
+		case 'aml':
+			config.merge(archieml.load(readFileSync(fName, 'utf8')));
+			break;
+		default:
+			config.file(fName);
+			break;
+		}
 	}
 	//second programatic pass
 	for(let root of roots) for(let subSpec of subSpecs) {

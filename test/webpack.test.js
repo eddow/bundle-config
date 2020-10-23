@@ -15,7 +15,7 @@ module.exports = {
 		path: testPath
 	},
 	plugins: [
-		new ConfigPlugin({path: './test/config'})
+		new ConfigPlugin({path: './test/config', specs: ['client', 'dev']})
 	],
 	module: {
 		rules: [{

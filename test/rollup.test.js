@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript2'
+import typescript from '@rollup/plugin-typescript'
 const {rollup: ConfigPlugin} = require('../dist')
 
 export default {
@@ -11,10 +11,10 @@ export default {
 		'./node_modules'
 	],
 	plugins: [
-		typescript({
+		typescript(/*{
 			typescript: require('typescript'),
 			tsconfig: './test/tsconfig.json'
-		}),
-		ConfigPlugin({path: './test/config'})
+		}*/),
+		ConfigPlugin({path: './test/config', specs: ['client', 'dev']})
 	]
 }

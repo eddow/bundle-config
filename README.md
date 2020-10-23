@@ -8,7 +8,7 @@ Intended to be used by bundlers to bundle a configuration object built upon many
 The gathering will create one configuration object from the files of a folder and the configuration given as parameter.
 
 The configuration engine will look for many files each overwriting the previous one.
-Each file will be searched with extension `.yaml`, `.yml`, `.json` and `.js`. Note that `.json` will read [hjson](http://hjson.org/) that is basically a more forgiving json.
+Each file will be searched with extension [`.aml`](http://archieml.org/), `.yaml`, `.yml`, `.json` and `.js`. Note that `.json` will read [hjson](http://hjson.org/) that is basically a more forgiving json.
 
 ## Bundler-oriented configuration
 This library is made so that a configuration is read in order to be available to bundle or be used by the running program.
@@ -38,7 +38,7 @@ Therefore, if your config folder contains a file `local.server.dev.json`, this f
 
 #### Programatic configurations
 
-The first pass will read all the static configurations (`yaml` and `json`) then a second pass will read all the `js` files the same way and execute them with one global argument : `config`, that is the config object as described [here](https://www.npmjs.com/package/merge-config#api).
+The first pass will read all the static configurations ([`aml`](http://archieml.org/), `yaml` and `json`) then a second pass will read all the `js` files the same way and execute them with one global argument : `config`, that is the config object as described [here](https://www.npmjs.com/package/merge-config#api).
 
 Exemple of programatic configuration :
 ```javascript
@@ -102,7 +102,7 @@ module.exports = {
 	...
 	plugins: [
 		...
-		new ConfigPlugin()
+		new ConfigPlugin({ ... })
 	],
 	...
 };
@@ -118,7 +118,7 @@ export default {
 	...
 	plugins: [
 		...
-		new ConfigPlugin()
+		new ConfigPlugin({ ... })
 	],
 	...
 };
