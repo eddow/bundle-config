@@ -1,6 +1,6 @@
 import extract from './config'
 import ConfigPluginOption from './options'
-import replace from '@rollup/plugin-replace';
+import replace, { RollupReplaceOptions } from '@rollup/plugin-replace';
 
 export default function configPlugin(options: ConfigPluginOption = {})
 {
@@ -9,7 +9,7 @@ export default function configPlugin(options: ConfigPluginOption = {})
 			options.specs || [],
 			options.env,
 			options.argv
-		), configured = {};
+		), configured: RollupReplaceOptions = {preventAssignment: true};
 	configured[options.name||'config'] = JSON.stringify(config);
 	
 	return replace(configured);
